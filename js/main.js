@@ -102,7 +102,7 @@ function buscarPorNombre() {
 
                 const eleccion = prompt(mensaje + '\nIngrese el número del producto que desea agregar al carrito o cancele para regresar a las opciones.');
 
-                if (eleccion === 'ordenar') {
+                if (eleccion === 'ordenar' || eleccion === 'ORDENAR') {
                     productosEncontrados.sort((a, b) => a.precio - b.precio);
                     continue;
                 }
@@ -128,7 +128,12 @@ function buscarPorNombre() {
     }
 }
 
-// Función para mostrar el contenido del carrito
+// Función para vaciar el carrito
+function vaciarCarrito () {
+    carrito.length= 0;
+}
+
+// Función para mostrar el contenido del carrito y procesar el pago
 function mostrarCarrito() {
     let mensaje = 'Carrito de compras:\n';
     let total = 0;
@@ -142,7 +147,7 @@ function mostrarCarrito() {
 
     while (true) {
         const cupon = prompt(
-            mensaje + 'Total: $' + total + '\n\nSeleccione aceptar para pagar o cancele para seguir comprando.\nSi tiene un cupón de descuento, ingréselo a continuación:'
+            mensaje + 'Total: $' + total + '\n\nIngrese "COMPRAR" para pagar o cancele para seguir comprando.\nSi tiene un cupón de descuento, ingréselo a continuación:'
             );
 
         if (cupon === null) {
@@ -154,18 +159,19 @@ function mostrarCarrito() {
                 'Total con descuento del 20%: $' + total + '\n¿Desea proceder con la compra?'
             );
             break;
-        } else if (cupon === "aceptar") {
+        } else if (cupon === 'comprar' || cupon === 'COMPRAR') {
             confirmacion = confirm(
                 'Total: $' + total + '\n¿Desea proceder con la compra?'
             );
             break;
         } else {
-            alert("Cupón de descuento no válido. Inténtelo de nuevo o seleccione aceptar para proceder sin descuento.");
+            alert('Opción no válida. Inténte ingresar el cupón nuevamente o ingrese "COMPRAR" para proceder sin descuento.');
         }
     }
 
     if (confirmacion) {
         alert('Pago realizado con éxito. Gracias por su compra!');
+        vaciarCarrito();
     } else {
         return null;
     }
@@ -195,7 +201,7 @@ function mostrarProductos(vistaProductos) {
 
         const eleccion = prompt(mensaje + '\nIngrese el número del producto que desea agregar al carrito o cancele para regresar a las opciones');
 
-        if (eleccion === 'ordenar') {
+        if (eleccion === 'ordenar' || eleccion === 'ORDENAR') {
             productosCopia.sort((a, b) => a.precio - b.precio);
             continue;
         }
