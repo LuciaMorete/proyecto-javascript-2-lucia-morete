@@ -1,0 +1,28 @@
+::after,
+::before,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62,5px;
+}
+
+body {
+    overflow-x: hidden;
+    background-image: url(../assets/carteras-zapatos.webp);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    margin: 0;
+    height: 100vh;
+}
+
+@media screen and (max-width: 580px){
+    body {
+        background-size: 100% 100%;
+    }
+}
